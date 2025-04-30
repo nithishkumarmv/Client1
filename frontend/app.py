@@ -1,24 +1,52 @@
-To run the code, follow these steps:
+from flask import Flask, render_template
 
-1. **Ensure Python and Flask are installed**:
-    - Open a terminal or command prompt.
-    - Run `python --version` to check Python is installed.
-    - Run `pip install flask` to install Flask if not already installed.
+app = Flask(__name__)
 
-2. **Navigate to the file's directory**:
-    - Open a terminal or command prompt.
-    - Run:
-      ```
-      cd /c:/Users/nithi/Desktop/client1/Client1/frontend/
-      ```
+@app.route('/')
+def landing_page():
+    return '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Landing Page</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f4f4f4;
+            }
+            .container {
+                text-align: center;
+            }
+            h1 {
+                color: #333;
+            }
+            p {
+                color: #666;
+            }
+            a {
+                text-decoration: none;
+                color: #007BFF;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Our Landing Page!</h1>
+            <p>We are glad to have you here. Explore our services and offerings.</p>
+            <a href="/about">Learn More</a>
+        </div>
+    </body>
+    </html>
+    '''
 
-3. **Run the script**:
-    - Execute the following command:
-      ```
-      python app.py
-      ```
-
-4. **Access the application**:
-    - Open a web browser and go to `http://127.0.0.1:5000/`.
-
-You should see the e-commerce home page rendered in your browser.
+if __name__ == '__main__':
+    app.run(debug=True)
