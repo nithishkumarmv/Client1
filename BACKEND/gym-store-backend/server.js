@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+// Connect to MongoDB
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -9,9 +10,11 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
+// Initialize Express app
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 
 app.get('/', (req, res) => {
   res.send('Gym Store API running');
@@ -19,6 +22,7 @@ app.get('/', (req, res) => {
 
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
+
 
 const productRoutes = require('./routes/product');
 app.use('/api/products', productRoutes);
