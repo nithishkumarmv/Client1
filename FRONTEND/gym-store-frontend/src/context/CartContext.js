@@ -11,15 +11,10 @@ export const CartProvider = ({ children }) => {
     const uniqueItem = { ...item, cartId: uuidv4() }; // Add a unique cartId
     setCartItems((prevItems) => [...prevItems, uniqueItem]);
 
-    // Save to database (optional)
-    // axios.post('http://localhost:5000/api/cart', uniqueItem);
   };
 
   const removeFromCart = (cartId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.cartId !== cartId));
-
-    // Remove from database (optional)
-    // axios.delete(`http://localhost:5000/api/cart/${cartId}`);
   };
 
   const clearCart = () => {

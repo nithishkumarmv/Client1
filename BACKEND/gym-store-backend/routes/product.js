@@ -5,7 +5,7 @@ const router = express.Router();
 router.post('/add', addProduct); // for admin
 router.get('/', getAllProducts);
 
-
+// router.delete('/delete/:id', deleteProduct);
 
 const upload = require('../middleware/upload');
 router.post('/upload', upload.single('image'), (req, res) => {

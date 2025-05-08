@@ -15,6 +15,21 @@ function Navbar() {
         <li>
           <Link to="/cart">Cart</Link>
         </li>
+        <li>
+          <Link to="/profile">User Profile</Link>
+        </li>
+        <li>
+          <Link to="/history">Order History</Link>
+        </li>
+        <li>
+          <Link to="/productList">ProductList</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
       </ul>
     </nav>
   );

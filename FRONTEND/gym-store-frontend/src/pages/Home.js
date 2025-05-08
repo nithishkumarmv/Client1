@@ -23,22 +23,20 @@ function Home() {
     alert(`${product.name} added to cart!`);
   };
 
+
   return (
-    <div className="home">
-      <h2>Gym Products</h2>
-      <div className="product-list">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <div key={product._id} className="product-item">
-              <h3>{product.name}</h3>
-              <img src={product.image} alt={product.name} width="100" />
-              <p>Price: Rs. {product.price}</p>
-              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
-            </div>
-          ))
-        ) : (
-          <p>Loading products...</p>
-        )}
+    <div className="home-container">
+      <h1>Welcome to Gym Store</h1>
+      <h2>Trending Products</h2>
+      <div className="recent-products">
+        {products.slice(-5).map((product) => (
+          <div key={product._id} className="recent-product-card">
+            <img src={product.image} alt={product.name} className="recent-product-image" />
+            <h3>{product.name}</h3>
+            <p>${product.price}</p>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+          </div>
+        ))}
       </div>
     </div>
   );
