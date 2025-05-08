@@ -1,25 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { CartContext } from '../context/CartContext';
+import '../styles/Home.css';
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
+    // Fetch products from the backend API
     axios.get('http://localhost:5000/api/products')
-      .then(res => setProducts(res.data))
-      .catch(err => console.log(err));
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
   }, []);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    alert(`${product.name} added to cart!`);
+  };
+
   return (
-    <div>
+    <div className="home">
       <h2>Gym Products</h2>
-      {products.map(prod => (
-        <div key={prod._id}>
-          <h3>{prod.name}</h3>
-          <img src={prod.image} alt={prod.name} width="100" />
-          <p>Rs. {prod.price}</p>
-        </div>
-      ))}
+      <div className="product-list">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div key={product._id} className="product-item">
+              <h3>{product.name}</h3>
+              <img src={product.image} alt={product.name} width="100" />
+              <p>Price: Rs. {product.price}</p>
+              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+            </div>
+          ))
+        ) : (
+          <p>Loading products...</p>
+        )}
+      </div>
     </div>
   );
 }

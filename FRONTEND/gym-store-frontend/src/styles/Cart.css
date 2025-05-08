@@ -1,0 +1,64 @@
+/* filepath: c:\Users\nithi\Desktop\project\Client1-1\Client1-1\FRONTEND\gym-store-frontend\src\styles\Cart.css */
+.cart {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .cart h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .cart-items {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+  
+  .cart-total {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .pay-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pay-button:hover {
+    background-color: #555;
+  }
+
+  .remove-button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .remove-button:hover {
+    background-color: darkred;
+  }
