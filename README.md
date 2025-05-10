@@ -10,6 +10,8 @@
 2. Install dependencies:
     ```bash
     npm install
+    npx expo install react-native-screens react-native-safe-area-context
+    npm install @react-navigation/native @react-navigation/native-stack 
     ```
 3. Start the development server:
     ```bash
