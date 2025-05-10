@@ -16,7 +16,6 @@ export default function LoginScreen({ navigation }) {
       const data = await res.json();
       if (res.ok) {
         Alert.alert('Success', 'Login successful');
-        // You can store token/user info here (e.g., AsyncStorage)
         navigation.navigate('Profile', { user: data.user });
       } else {
         Alert.alert('Error', data.msg || 'Login failed');

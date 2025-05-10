@@ -2,6 +2,8 @@
 
 ## Setup Instructions
 
+
+IP address = ipconfig(eg : 192.168.1.34)
 ### Frontend Setup
 1. Navigate to the `frontend` directory:
     ```bash
@@ -25,6 +27,7 @@
     ```
 2. Install dependencies:
     ```bash
+    npm install express mongoose dotenv bcryptjs jsonwebtoken cors
     npm install
     ```
 3. Start the server:
