@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const baseURL = process.env.BASE_URL || 'http://192.168.1.34:5000';
+const baseURL = process.env.BASE_URL || 'http://192.168.1.33:5000';
 
 dotenv.config();
 const authRoutes = require('./routes/authRoutes');
