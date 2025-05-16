@@ -7,16 +7,22 @@ export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = async () => {
-    try {
-      const data = await register(name, email, password);
-      Alert.alert('Success', data.msg, [
-        { text: 'OK', onPress: () => navigation.navigate('Login') },
-      ]);
-    } catch (err) {
-      Alert.alert('Error', err.message || 'Registration failed');
-    }
-  };
+  
+    const handleRegister = async () => {
+      if (!name.trim() || !email.trim() || !password.trim()) {
+        Alert.alert('Validation Error', 'Please fill in all fields.');
+        return;
+      }
+
+      try {
+        const data = await register(name, email, password);
+        Alert.alert('Success', data.msg, [
+          { text: 'OK', onPress: () => navigation.navigate('Login') },
+        ]);
+      } catch (err) {
+        Alert.alert('Error', err.message || 'Registration failed');
+      }
+    };
 
   return (
     <View style={styles.container}>

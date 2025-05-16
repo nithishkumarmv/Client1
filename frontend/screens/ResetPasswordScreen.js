@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { resetPassword } from '../services/authService';
 
 export default function ResetPasswordScreen({ route, navigation }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { token } = route.params;
+  
+  // Get token from route params
+  const token = route.params?.token;
 
-  const handleReset = async () => {
+  const handlePasswordReset = async () => {
     if (!newPassword || !confirmPassword) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
@@ -23,8 +25,8 @@ export default function ResetPasswordScreen({ route, navigation }) {
     try {
       await resetPassword(token, newPassword);
       Alert.alert(
-        'Success',
-        'Password reset successfully',
+        'Success', 
+        'Your password has been reset successfully',
         [{ text: 'OK', onPress: () => navigation.navigate('Login') }]
       );
     } catch (error) {
@@ -45,7 +47,7 @@ export default function ResetPasswordScreen({ route, navigation }) {
         style={styles.input}
         secureTextEntry
       />
-      
+
       <TextInput
         placeholder="Confirm New Password"
         value={confirmPassword}
@@ -53,10 +55,10 @@ export default function ResetPasswordScreen({ route, navigation }) {
         style={styles.input}
         secureTextEntry
       />
-      
+
       <Button
         title={isLoading ? "Resetting..." : "Reset Password"}
-        onPress={handleReset}
+        onPress={handlePasswordReset}
         disabled={isLoading}
       />
     </View>
@@ -66,11 +68,12 @@ export default function ResetPasswordScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
   title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  input: { 
-    borderWidth: 1, 
-    borderColor: '#ccc', 
-    marginBottom: 15, 
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 15,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 5,
+    fontSize: 16,
   },
 });

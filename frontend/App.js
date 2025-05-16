@@ -8,6 +8,8 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import CustomDrawerContent from './context/CustomDrawerContent';
 import { ActivityIndicator, View } from 'react-native';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -33,7 +35,7 @@ export default function App() {
     const checkAuthState = async () => {
       try {
         const userData = await AsyncStorage.getItem('user');
-        setInitialRoute(userData ? 'Home' : 'Login');
+        setInitialRoute(userData ? 'Main' : 'Login');
       } catch (error) {
         console.error('Error checking auth state:', error);
         setInitialRoute('Login');
@@ -71,11 +73,21 @@ export default function App() {
           options={{ headerShown: false }} 
         />
         <Stack.Screen
-          name="Home"
+          name="Main"
           options={{ headerShown: false }}
         >
           {() => <HomeDrawer onLogout={handleLogout} />}
         </Stack.Screen>
+        <Stack.Screen 
+          name="ForgotPassword" 
+          component={ForgotPasswordScreen} 
+          options={{ title: 'Forgot Password' }} 
+        />
+        <Stack.Screen 
+          name="ResetPassword" 
+          component={ResetPasswordScreen} 
+          options={{ title: 'Reset Password' }} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

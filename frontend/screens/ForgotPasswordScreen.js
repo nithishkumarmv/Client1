@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { requestPasswordReset } from '../services/authService';
 
 export default function ForgotPasswordScreen({ navigation }) {
@@ -8,7 +8,7 @@ export default function ForgotPasswordScreen({ navigation }) {
 
   const handleResetRequest = async () => {
     if (!email) {
-      Alert.alert('Error', 'Please enter your email');
+      Alert.alert('Error', 'Please enter your email address');
       return;
     }
 
@@ -17,7 +17,7 @@ export default function ForgotPasswordScreen({ navigation }) {
       await requestPasswordReset(email);
       Alert.alert(
         'Email Sent',
-        'Check your email for password reset instructions',
+        'If an account exists with this email, you will receive a password reset link.',
         [{ text: 'OK', onPress: () => navigation.goBack() }]
       );
     } catch (error) {
@@ -30,7 +30,7 @@ export default function ForgotPasswordScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Password</Text>
-      <Text style={styles.subtitle}>Enter your email to receive reset instructions</Text>
+      <Text style={styles.subtitle}>Enter your email to receive a reset link</Text>
       
       <TextInput
         placeholder="Email"
@@ -40,12 +40,16 @@ export default function ForgotPasswordScreen({ navigation }) {
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      
+
       <Button
         title={isLoading ? "Sending..." : "Send Reset Link"}
         onPress={handleResetRequest}
         disabled={isLoading}
       />
+
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.backLink}>Back to Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -54,11 +58,18 @@ const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
   title: { fontSize: 24, marginBottom: 10, textAlign: 'center' },
   subtitle: { fontSize: 16, marginBottom: 20, textAlign: 'center', color: '#666' },
-  input: { 
-    borderWidth: 1, 
-    borderColor: '#ccc', 
-    marginBottom: 15, 
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 15,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 5,
+    fontSize: 16,
+  },
+  backLink: {
+    marginTop: 20,
+    color: '#3498db',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

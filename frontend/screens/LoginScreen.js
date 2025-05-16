@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  Button, 
+  Alert, 
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { login } from '../services/authService';
 import { storeUser } from '../utils/storage';
 
@@ -20,7 +28,7 @@ export default function LoginScreen({ navigation }) {
       await storeUser(data.user);
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Home' }],
+        routes: [{ name: 'Main' }],
       });
     } catch (error) {
       Alert.alert('Error', error.message || 'Login failed');
@@ -52,11 +60,13 @@ export default function LoginScreen({ navigation }) {
         onPress={handleLogin} 
         disabled={isLoading}
       />
-      
       <Button 
         title="Don't have an account? Register" 
         onPress={() => navigation.navigate('Register')} 
       />
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -71,5 +81,11 @@ const styles = StyleSheet.create({
     padding: 8, 
     borderRadius: 4,
     height: 40,
+  },
+  forgotPassword: {
+    marginTop: 15,
+    color: '#3498db',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
